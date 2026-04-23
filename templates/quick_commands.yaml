@@ -1,0 +1,73 @@
+quick_commands:
+  nb-create:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb create {args}
+  nb_create:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb create {args}
+  nb-use:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb use {args}
+  nb_use:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb use {args}
+  nb-add:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb add {args}
+  nb_add:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb add {args}
+  nb-research:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb research {args}
+  nb_research:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb research {args}
+  nb-ask:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb ask {args}
+  nb_ask:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb ask {args}
+  nb-brief:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb brief {args}
+  nb_brief:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb brief {args}
+  nb-slides:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb slides {args}
+  nb_slides:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb slides {args}
+  nb-podcast:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb podcast {args}
+  nb_podcast:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb podcast {args}
+  nb-quiz:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb quiz {args}
+  nb_quiz:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb quiz {args}
+  nb-mindmap:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb mindmap {args}
+  nb_mindmap:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb mindmap {args}
+  nb-download:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb download {args}
+  nb_download:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb download {args}
+  nb-reset:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb reset
+  nb_reset:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb reset
