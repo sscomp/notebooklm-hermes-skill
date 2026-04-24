@@ -45,7 +45,7 @@ pick_unique([nb for nb in notebooks if (nb.get("title") or "").lower().startswit
 pick_unique([nb for nb in notebooks if target_lower in (nb.get("title") or "").lower()], "title")
 
 print(
-    f"No notebook found for '{target}'. Run 'nb list' to copy the notebook ID or confirm the title.",
+    f"No notebook found for '{target}'. Run '/nb-list' in Telegram or inspect the notebook list locally to confirm the ID or title.",
     file=sys.stderr,
 )
 raise SystemExit(1)

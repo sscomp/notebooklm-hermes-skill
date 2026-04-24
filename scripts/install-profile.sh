@@ -3,7 +3,7 @@ set -euo pipefail
 
 PROFILE_HOME="${1:-}"
 if [ -z "$PROFILE_HOME" ]; then
-  echo "Usage: install-profile.sh <hermes-profile-home> [--skip-runtime] [--install-quick-commands] [--no-install-quick-commands]" >&2
+  echo "Usage: install-profile.sh <hermes-profile-home> [--skip-runtime]" >&2
   exit 2
 fi
 if [ ! -d "$PROFILE_HOME" ]; then
@@ -12,7 +12,6 @@ if [ ! -d "$PROFILE_HOME" ]; then
 fi
 
 SKIP_RUNTIME=0
-INSTALL_QUICK_COMMANDS=0
 
 shift
 while [ "$#" -gt 0 ]; do
@@ -20,15 +19,9 @@ while [ "$#" -gt 0 ]; do
     --skip-runtime)
       SKIP_RUNTIME=1
       ;;
-    --install-quick-commands|--with-quick-commands)
-      INSTALL_QUICK_COMMANDS=1
-      ;;
-    --no-install-quick-commands|--without-quick-commands)
-      INSTALL_QUICK_COMMANDS=0
-      ;;
     *)
       echo "Unknown option: $1" >&2
-      echo "Usage: install-profile.sh <hermes-profile-home> [--skip-runtime] [--install-quick-commands] [--no-install-quick-commands]" >&2
+      echo "Usage: install-profile.sh <hermes-profile-home> [--skip-runtime]" >&2
       exit 2
       ;;
   esac
@@ -56,8 +49,7 @@ chmod +x "$BIN_DST"
 
 find "$SKILL_DST/scripts" -type f -name "*.sh" -exec chmod +x {} +
 
-if [ "$INSTALL_QUICK_COMMANDS" -eq 1 ]; then
-  python3 - "$CONFIG_DST" "$PROFILE_HOME" <<'PY'
+python3 - "$CONFIG_DST" "$PROFILE_HOME" <<'PY'
 import sys
 from pathlib import Path
 
@@ -190,7 +182,6 @@ for i in range(start + 1, len(lines)):
 updated_lines = lines[:start] + rendered_block.rstrip("\n").splitlines() + lines[end:]
 config_path.write_text("\n".join(updated_lines).rstrip() + "\n", encoding="utf-8")
 PY
-fi
 
 if [ "$SKIP_RUNTIME" -eq 0 ]; then
   HERMES_ROOT="$HERMES_ROOT" "$REPO_DIR/scripts/bootstrap-notebooklm.sh"
@@ -204,14 +195,5 @@ if [ "$SKIP_RUNTIME" -eq 1 ]; then
 else
   echo "  runtime: $HERMES_ROOT/tools/notebooklm-py-venv/bin/notebooklm"
 fi
-if [ "$INSTALL_QUICK_COMMANDS" -eq 1 ]; then
-  echo "  quick_commands: installed into $CONFIG_DST"
-else
-  echo "  quick_commands: not installed (use --install-quick-commands to enable slash aliases)"
-fi
-echo "Recommended next step: enable Hermes CLI access so you can run: $PROFILE_HOME/bin/nb list"
-if [ "$INSTALL_QUICK_COMMANDS" -eq 1 ]; then
-  echo "Telegram slash aliases are configured. Restart the Hermes gateway before testing /nb-list."
-else
-  echo "Optional legacy compatibility: merge templates/quick_commands.yaml into $PROFILE_HOME/config.yaml or rerun with --install-quick-commands."
-fi
+echo "  quick_commands: installed into $CONFIG_DST"
+echo "Recommended next step: restart the Hermes gateway, then test /nb-list in Telegram."

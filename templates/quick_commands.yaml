@@ -1,8 +1,6 @@
 # Legacy compatibility layer only.
-# Recommended primary usage is direct CLI, for example:
-#   ${HERMES_HOME}/bin/nb list
-#   ${HERMES_HOME}/bin/nb use <id>
-# Keep these aliases only if a gateway still needs slash commands.
+# Recommended user-facing usage on Hermes gateway platforms is slash commands
+# such as /nb-list and /nb-use.
 quick_commands:
   nb-create:
     type: exec

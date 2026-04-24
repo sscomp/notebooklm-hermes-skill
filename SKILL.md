@@ -1,7 +1,7 @@
 # NotebookLM Research Skill (Hermes)
 
 ## Description
-Use Google NotebookLM as a Hermes research skill. The recommended entry point is the profile-local `nb` wrapper. Messaging platforms and slash commands are optional compatibility layers only; all notebook/source/research/chat/artifact workflows are executed by the bundled `notebooklm-py` CLI runtime installed by this skill.
+Use Google NotebookLM as a Hermes research skill. For Hermes gateway platforms such as Telegram, the recommended user-facing interface is the slash-command layer (`/nb-list`, `/nb-use`, `/nb-ask`). The profile-local `nb` wrapper remains the internal execution layer used by those slash commands.
 
 ## Capabilities
 - create notebook and auto-activate context
@@ -45,14 +45,12 @@ Subcommands:
 - `list`
 - `login`
 
-Prefer direct commands such as:
+Recommended gateway commands:
 
-- `nb list`
-- `nb use <notebook-id-or-title>`
-- `nb ask <question>`
-- `nb status`
-
-Do not require slash `quick_commands` unless a gateway integration specifically needs them.
+- `/nb-list`
+- `/nb-use <notebook-id>`
+- `/nb-ask <question>`
+- `/nb-status`
 
 ## First Login
 
@@ -70,13 +68,11 @@ Install this skill with:
 /path/to/notebooklm-hermes-skill/scripts/install-profile.sh <profile-home>
 ```
 
-That installer also bootstraps the pinned shared runtime:
+That installer also bootstraps the pinned shared runtime and writes NotebookLM slash command mappings into the target profile `config.yaml`:
 
 - `~/.hermes/tools/notebooklm-py-venv/bin/notebooklm`
 - `notebooklm-py[browser]==0.3.4`
 
-Installer flags:
+Installer flag:
 
 - `--skip-runtime`
-- `--install-quick-commands`
-- `--no-install-quick-commands`

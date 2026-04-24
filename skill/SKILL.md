@@ -1,7 +1,7 @@
 # NotebookLM Research Skill
 
 ## Description
-Use NotebookLM as a Hermes research toolset. The preferred interface is the profile-local `nb` command. Telegram or other gateways can still route legacy slash commands into this skill through optional quick command mappings, while the underlying NotebookLM operations run through the shared `notebooklm-py` CLI runtime installed with this skill.
+Use NotebookLM as a Hermes research toolset. On Hermes gateway platforms, the preferred user-facing interface is the slash-command layer such as `/nb-list` and `/nb-ask`. The profile-local `nb` wrapper remains the internal router used by those commands.
 
 ## Router
 
@@ -26,13 +26,13 @@ HERMES_HOME="$HERMES_HOME" "$HERMES_HOME/skills/research/notebooklm/scripts/nb.s
 - `list`
 - `login`
 
-Recommended day-to-day usage:
+Recommended gateway usage:
 
-- `nb list`
-- `nb use <notebook-id-or-title>`
-- `nb ask <question>`
-- `nb create <topic>`
-- `nb status`
+- `/nb-list`
+- `/nb-use <notebook-id>`
+- `/nb-ask <question>`
+- `/nb-create <topic>`
+- `/nb-status`
 
 ## Auth
 Run profile-local login:
@@ -49,13 +49,11 @@ Standard installation:
 /path/to/notebooklm-hermes-skill/scripts/install-profile.sh <profile-home>
 ```
 
-This installs the skill into the target profile and bootstraps the pinned shared runtime:
+This installs the skill into the target profile, writes the NotebookLM slash command mappings into `config.yaml`, and bootstraps the pinned shared runtime:
 
 - `~/.hermes/tools/notebooklm-py-venv/bin/notebooklm`
 - `notebooklm-py[browser]==0.3.4`
 
-Useful installer flags:
+Useful installer flag:
 
 - `--skip-runtime`
-- `--install-quick-commands`
-- `--no-install-quick-commands`

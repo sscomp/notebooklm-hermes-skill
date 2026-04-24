@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+- Standardized the public GitHub guidance on slash commands such as `/nb-list` for Hermes gateway usage.
+- Simplified installation so NotebookLM slash commands are installed by default instead of being optional.
+- Clarified that the `nb` wrapper is an internal execution layer and should not be treated as the Telegram-facing command format.
+
 ## 0.3.0
 
 - Added installer flags for optional quick-command installation into Hermes profile `config.yaml`.
