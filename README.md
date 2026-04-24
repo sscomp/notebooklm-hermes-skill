@@ -25,6 +25,11 @@ It is profile-isolated by design: each Hermes profile uses its own `NOTEBOOKLM_H
 
 ## Install into a Hermes profile
 
+`install-profile.sh` is the main installer. It now installs both:
+
+- the Hermes skill files into the target profile
+- a pinned shared `notebooklm-py` runtime into `~/.hermes/tools/notebooklm-py-venv`
+
 ```bash
 /Users/sscomp/notebooklm-hermes-skill/scripts/install-profile.sh /Users/sscomp/.hermes/profiles/m2
 /Users/sscomp/notebooklm-hermes-skill/scripts/install-profile.sh /Users/sscomp/.hermes/profiles/n2
@@ -34,8 +39,21 @@ This installs:
 
 - skill files into `<PROFILE>/skills/research/notebooklm`
 - wrapper command into `<PROFILE>/bin/nb`
+- shared runtime into `~/.hermes/tools/notebooklm-py-venv`
 
-## Install notebooklm-py runtime (shared)
+By default the runtime is pinned to:
+
+- `notebooklm-py[browser]==0.3.4`
+
+If you already manage the runtime separately, you can skip that step:
+
+```bash
+/Users/sscomp/notebooklm-hermes-skill/scripts/install-profile.sh /Users/sscomp/.hermes/profiles/m2 --skip-runtime
+```
+
+## Install notebooklm-py runtime only (advanced / shared)
+
+Most users do not need this because `install-profile.sh` runs it automatically.
 
 ```bash
 /Users/sscomp/notebooklm-hermes-skill/scripts/bootstrap-notebooklm.sh
@@ -73,25 +91,34 @@ HERMES_HOME=/Users/sscomp/.hermes/profiles/n2 /Users/sscomp/.hermes/profiles/n2/
 
 這個專案是給 Hermes Agent 用的 NotebookLM 研究技能包，安裝後可透過 `/nb-*` 指令完成建立主題、加資料、研究問答與產出簡報/音訊等流程。
 
-### 1) 安裝技能到指定 profile
+### 1) 安裝到指定 profile
+
+這一步會同時安裝：
+
+- Hermes skill
+- 共用的 `notebooklm-py` 執行環境
 
 ```bash
 /Users/sscomp/notebooklm-hermes-skill/scripts/install-profile.sh /Users/sscomp/.hermes/profiles/m2
 ```
 
-### 2) 安裝 NotebookLM 執行環境（全機共用一次）
+預設會安裝固定版本：
+
+- `notebooklm-py[browser]==0.3.4`
+
+若你已經自行維護 runtime，可改用：
 
 ```bash
-/Users/sscomp/notebooklm-hermes-skill/scripts/bootstrap-notebooklm.sh
+/Users/sscomp/notebooklm-hermes-skill/scripts/install-profile.sh /Users/sscomp/.hermes/profiles/m2 --skip-runtime
 ```
 
-### 3) 每個 profile 各自做一次登入授權
+### 2) 每個 profile 各自做一次登入授權
 
 ```bash
 HERMES_HOME=/Users/sscomp/.hermes/profiles/m2 /Users/sscomp/.hermes/profiles/m2/bin/nb login
 ```
 
-### 4) 常用指令
+### 3) 常用指令
 
 - `/nb-create <主題>`：建立 notebook 並自動設為目前使用中
 - `/nb-use <notebook_id>`：切換到既有 notebook

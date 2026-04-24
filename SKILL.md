@@ -1,7 +1,7 @@
 # NotebookLM Research Skill (Hermes)
 
 ## Description
-Use Google NotebookLM as a Hermes research skill. Messaging platforms (for example Telegram slash commands) are only the entry point; all notebook/source/research/chat/artifact workflows are executed by `notebooklm-py` CLI scripts.
+Use Google NotebookLM as a Hermes research skill. Messaging platforms (for example Telegram slash commands) are only the entry point; all notebook/source/research/chat/artifact workflows are executed by the bundled `notebooklm-py` CLI runtime installed by this skill.
 
 ## Capabilities
 - create notebook and auto-activate context
@@ -52,3 +52,16 @@ HERMES_HOME="$HERMES_HOME" "$HERMES_HOME/bin/nb" login
 ```
 
 After browser login, return to terminal and press Enter.
+
+## Runtime
+
+Install this skill with:
+
+```bash
+/path/to/notebooklm-hermes-skill/scripts/install-profile.sh <profile-home>
+```
+
+That installer also bootstraps the pinned shared runtime:
+
+- `~/.hermes/tools/notebooklm-py-venv/bin/notebooklm`
+- `notebooklm-py[browser]==0.3.4`
