@@ -53,3 +53,9 @@ This installs the skill into the target profile and bootstraps the pinned shared
 
 - `~/.hermes/tools/notebooklm-py-venv/bin/notebooklm`
 - `notebooklm-py[browser]==0.3.4`
+
+Useful installer flags:
+
+- `--skip-runtime`
+- `--install-quick-commands`
+- `--no-install-quick-commands`

@@ -74,3 +74,9 @@ That installer also bootstraps the pinned shared runtime:
 
 - `~/.hermes/tools/notebooklm-py-venv/bin/notebooklm`
 - `notebooklm-py[browser]==0.3.4`
+
+Installer flags:
+
+- `--skip-runtime`
+- `--install-quick-commands`
+- `--no-install-quick-commands`
