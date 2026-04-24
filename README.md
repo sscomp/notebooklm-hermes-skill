@@ -4,7 +4,7 @@ Reusable NotebookLM research skill for Hermes Agent profiles.
 
 This project packages the full NotebookLM integration used in the local migration.
 
-Version: `0.3.1`
+Version: `0.3.2`
 
 ## Recommended usage
 
@@ -122,6 +122,28 @@ For slash commands with arguments:
 - `/nb-ask <question>`
 - `/nb-create <topic>`
 
+### Post-install verification checklist
+
+Do not stop after `/nb-list`.
+
+Use this order so you can tell the difference between a NotebookLM install problem
+and a Hermes quick-command compatibility problem:
+
+1. Restart the gateway after `config.yaml` changes.
+2. Test `/nb-list` to confirm the slash-command mapping is loaded.
+3. Test `/nb-login` if this profile has never authenticated with NotebookLM.
+4. Test `/nb-use <notebook-id>` with a real notebook ID.
+5. Test `/nb-ask <question>` to confirm argument passing works end to end.
+
+Why this matters:
+
+- `/nb-list` only proves the quick command exists.
+- `/nb-use <id>` and `/nb-ask <question>` prove Hermes is passing slash-command
+  arguments into the NotebookLM wrapper correctly.
+
+If `/nb-list` works but `/nb-use <id>` only prints a usage message, treat that as a
+Hermes compatibility problem first, not as a NotebookLM skill installation failure.
+
 ### Gateway restart and status
 
 After changing `config.yaml`:
@@ -130,6 +152,31 @@ After changing `config.yaml`:
 /Users/sscomp/.local/bin/hermes --profile m2 gateway restart
 /Users/sscomp/.local/bin/hermes --profile m2 gateway status
 ```
+
+## Known Hermes compatibility issue
+
+Some Hermes builds do not correctly substitute slash-command arguments into
+`quick_commands` exec commands.
+
+Typical symptom:
+
+- `/nb-list` works
+- `/nb-use <id>` fails with a usage message such as `Usage: nb_use.sh <notebook_id>`
+- `/nb-ask <question>` behaves as if no argument was provided
+
+This usually means the Hermes gateway or CLI is not expanding `{args}` correctly for
+user-defined quick commands.
+
+What to check:
+
+- `<PROFILE>/config.yaml` contains NotebookLM `quick_commands`
+- the command lines include `{args}` for commands that expect parameters
+- the gateway was restarted after editing `config.yaml`
+- your Hermes build includes working quick-command argument substitution
+
+Detailed troubleshooting is in:
+
+- [docs/troubleshooting.md](/Users/sscomp/notebooklm-hermes-skill/docs/troubleshooting.md)
 
 ## Notes
 
@@ -201,9 +248,44 @@ HERMES_HOME=/Users/sscomp/.hermes/profiles/m2 /Users/sscomp/.hermes/profiles/m2/
 
 ### 5) 安裝後怎麼驗證
 
+不要只測 `/nb-list` 就結束。
+
+建議驗證順序：
+
+1. `/nb-list`
+2. `/nb-login`
+3. `/nb-use <ID>`
+4. `/nb-ask <問題>`
+
+原因是：
+
+- `/nb-list` 只能證明 slash command 已載入
+- `/nb-use <ID>`、`/nb-ask <問題>` 才能證明 Hermes 有把 quick command 的參數正確傳進去
+
+如果 `/nb-list` 可以，但 `/nb-use <ID>` 只回 usage 訊息，優先懷疑 Hermes 的 quick command `{args}` 相容性，而不是先懷疑 NotebookLM skill 沒裝好。
+
 改完 `config.yaml` 後要重啟 gateway：
 
 ```bash
 /Users/sscomp/.local/bin/hermes --profile m2 gateway restart
 /Users/sscomp/.local/bin/hermes --profile m2 gateway status
 ```
+
+### 6) Hermes 相容性排錯
+
+有些 Hermes 版本會出現：
+
+- `/nb-list` 正常
+- `/nb-use <ID>`、`/nb-ask <問題>` 卻拿不到參數
+
+這通常是 Hermes 本體沒有正確把 `quick_commands` 裡的 `{args}` 展開。
+
+請先檢查：
+
+- `<PROFILE>/config.yaml` 的 NotebookLM `quick_commands` 是否存在
+- 需要參數的 command 是否真的含有 `{args}`
+- 修改完 `config.yaml` 後是否已重啟 gateway
+
+詳細排錯請看：
+
+- [docs/troubleshooting.md](/Users/sscomp/notebooklm-hermes-skill/docs/troubleshooting.md)

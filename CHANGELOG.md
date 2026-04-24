@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+- Added post-install verification guidance so agents test `/nb-use <id>` and `/nb-ask <question>`, not just `/nb-list`.
+- Documented the Hermes quick-command `{args}` compatibility pitfall as a troubleshooting item instead of treating it as a standard install step.
+- Added a dedicated troubleshooting guide to separate normal installation from Hermes-side repair work.
+
 ## 0.3.1
 
 - Standardized the public GitHub guidance on slash commands such as `/nb-list` for Hermes gateway usage.
