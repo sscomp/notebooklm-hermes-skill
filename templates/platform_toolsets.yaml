@@ -1,0 +1,3 @@
+platform_toolsets:
+  cli:
+    - hermes-cli

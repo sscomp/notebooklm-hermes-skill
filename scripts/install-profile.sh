@@ -31,7 +31,7 @@ cat > "$BIN_DST" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
 export HERMES_HOME="\${HERMES_HOME:-$PROFILE_HOME}"
-exec "\$HERMES_HOME/skills/research/notebooklm/scripts/nb.sh" "\$@"
+exec bash "\$HERMES_HOME/skills/research/notebooklm/scripts/nb.sh" "\$@"
 EOF
 chmod +x "$BIN_DST"
 
@@ -49,4 +49,5 @@ if [ "$SKIP_RUNTIME" = "--skip-runtime" ]; then
 else
   echo "  runtime: $HERMES_ROOT/tools/notebooklm-py-venv/bin/notebooklm"
 fi
-echo "Next: merge quick_commands from templates/quick_commands.yaml into $PROFILE_HOME/config.yaml"
+echo "Recommended next step: enable Hermes CLI access so you can run: $PROFILE_HOME/bin/nb list"
+echo "Optional legacy compatibility: merge templates/quick_commands.yaml into $PROFILE_HOME/config.yaml only if you still want slash aliases."

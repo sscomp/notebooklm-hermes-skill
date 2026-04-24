@@ -1,7 +1,7 @@
 # NotebookLM Research Skill (Hermes)
 
 ## Description
-Use Google NotebookLM as a Hermes research skill. Messaging platforms (for example Telegram slash commands) are only the entry point; all notebook/source/research/chat/artifact workflows are executed by the bundled `notebooklm-py` CLI runtime installed by this skill.
+Use Google NotebookLM as a Hermes research skill. The recommended entry point is the profile-local `nb` wrapper. Messaging platforms and slash commands are optional compatibility layers only; all notebook/source/research/chat/artifact workflows are executed by the bundled `notebooklm-py` CLI runtime installed by this skill.
 
 ## Capabilities
 - create notebook and auto-activate context
@@ -44,6 +44,15 @@ Subcommands:
 - `status`
 - `list`
 - `login`
+
+Prefer direct commands such as:
+
+- `nb list`
+- `nb use <notebook-id-or-title>`
+- `nb ask <question>`
+- `nb status`
+
+Do not require slash `quick_commands` unless a gateway integration specifically needs them.
 
 ## First Login
 

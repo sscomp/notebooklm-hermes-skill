@@ -1,7 +1,7 @@
 # NotebookLM Research Skill
 
 ## Description
-Use NotebookLM as a Hermes research toolset. Telegram or other gateways can route slash commands into this skill through quick command mappings, while the underlying NotebookLM operations run through the shared `notebooklm-py` CLI runtime installed with this skill.
+Use NotebookLM as a Hermes research toolset. The preferred interface is the profile-local `nb` command. Telegram or other gateways can still route legacy slash commands into this skill through optional quick command mappings, while the underlying NotebookLM operations run through the shared `notebooklm-py` CLI runtime installed with this skill.
 
 ## Router
 
@@ -25,6 +25,14 @@ HERMES_HOME="$HERMES_HOME" "$HERMES_HOME/skills/research/notebooklm/scripts/nb.s
 - `status`
 - `list`
 - `login`
+
+Recommended day-to-day usage:
+
+- `nb list`
+- `nb use <notebook-id-or-title>`
+- `nb ask <question>`
+- `nb create <topic>`
+- `nb status`
 
 ## Auth
 Run profile-local login:
