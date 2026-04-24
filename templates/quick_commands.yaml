@@ -71,3 +71,21 @@ quick_commands:
   nb_reset:
     type: exec
     command: ${HERMES_HOME}/bin/nb reset
+  nb-list:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb list {args}
+  nb_list:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb list {args}
+  nb-status:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb status {args}
+  nb_status:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb status {args}
+  nb-login:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb login {args}
+  nb_login:
+    type: exec
+    command: ${HERMES_HOME}/bin/nb login {args}

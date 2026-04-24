@@ -16,6 +16,9 @@ This project packages the full NotebookLM integration used in the local migratio
 - `/nb-mindmap`
 - `/nb-download`
 - `/nb-reset`
+- `/nb-list`
+- `/nb-status`
+- `/nb-login`
 - status/list/login helpers
 
 It is profile-isolated by design: each Hermes profile uses its own `NOTEBOOKLM_HOME`.
@@ -98,3 +101,6 @@ HERMES_HOME=/Users/sscomp/.hermes/profiles/m2 /Users/sscomp/.hermes/profiles/m2/
 - `/nb-slides <需求>`：產生簡報
 - `/nb-podcast <需求>`：產生音訊導讀
 - `/nb-download <artifact-type>`：下載產物到 profile 輸出目錄
+- `/nb-list`：列出 notebooks
+- `/nb-status`：查看目前 notebook context
+- `/nb-login`：為該 profile 執行 NotebookLM 登入
