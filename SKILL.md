@@ -76,3 +76,22 @@ That installer also bootstraps the pinned shared runtime and writes NotebookLM s
 Installer flag:
 
 - `--skip-runtime`
+
+## Agent Install Check
+
+When this skill is installed into a customer Hermes environment, the agent must
+verify Hermes quick-command `{args}` substitution before signing off.
+
+Minimum checks:
+
+1. Verify Hermes gateway code contains the `{args}` replacement logic for
+   `type: exec` quick commands.
+2. Verify the target profile `config.yaml` still includes `{args}` for
+   parameterized NotebookLM slash commands.
+3. Verify `/nb-use <notebook-id>` and `/nb-ask <question>` both work after
+   gateway restart.
+
+Reference:
+
+- `/Users/sscomp/notebooklm-hermes-skill/docs/quick_commands_args_fix.md`
+- `/Users/sscomp/notebooklm-hermes-skill/docs/troubleshooting.md`

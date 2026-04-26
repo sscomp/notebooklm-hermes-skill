@@ -196,4 +196,11 @@ else
   echo "  runtime: $HERMES_ROOT/tools/notebooklm-py-venv/bin/notebooklm"
 fi
 echo "  quick_commands: installed into $CONFIG_DST"
-echo "Recommended next step: restart the Hermes gateway, then test /nb-list in Telegram."
+echo "Required verification:"
+echo "  1. Restart the Hermes gateway."
+echo "  2. Test /nb-list."
+echo "  3. Test /nb-use <notebook-id> and /nb-ask <question>."
+echo "  4. Verify Hermes quick-command {args} substitution if argument commands fail."
+echo "Docs:"
+echo "  - $REPO_DIR/docs/troubleshooting.md"
+echo "  - $REPO_DIR/docs/quick_commands_args_fix.md"

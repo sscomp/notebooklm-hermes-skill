@@ -69,6 +69,9 @@ Two things must both be true:
 If either side is missing, parameterized slash commands break even though
 `/nb-list` may still work.
 
+This is a required install checkpoint for customer environments. Agents should
+not close installation work until this compatibility path has been checked.
+
 ### Typical symptom
 
 One or more of these show up:
@@ -83,6 +86,28 @@ One or more of these show up:
 2. Confirm `nb-use`, `nb-ask`, and similar commands contain `{args}`.
 3. Restart the Hermes gateway after any `config.yaml` change.
 4. Re-test `/nb-use <id>`.
+
+### Required gateway code check
+
+If the target machine uses a Hermes Agent checkout, verify the gateway code
+includes the `{args}` replacement logic:
+
+```bash
+grep -A 3 "Replace {args}" ~/.hermes/hermes-agent/gateway/run.py
+```
+
+Expected logic:
+
+```python
+# Replace {args} with user-provided arguments
+user_args = event.get_command_args().strip()
+exec_cmd = exec_cmd.replace("{args}", user_args)
+```
+
+If this check returns nothing, the Hermes build is likely missing the fix
+required for parameterized NotebookLM slash commands. Use the repair guide:
+
+- [quick_commands_args_fix.md](/Users/sscomp/notebooklm-hermes-skill/docs/quick_commands_args_fix.md)
 
 If `/nb-list` works and `{args}` is present but argument-bearing commands still
 fail, the remaining issue is usually Hermes-side quick-command argument

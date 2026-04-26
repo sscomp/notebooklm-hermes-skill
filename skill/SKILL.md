@@ -57,3 +57,21 @@ This installs the skill into the target profile, writes the NotebookLM slash com
 Useful installer flag:
 
 - `--skip-runtime`
+
+## Agent Install Check
+
+For customer-machine installs, do not stop at `/nb-list`.
+
+The agent must also verify Hermes quick-command `{args}` substitution:
+
+1. Check Hermes gateway code for the `{args}` replacement logic used by
+   `type: exec` quick commands.
+2. Check the profile `config.yaml` to make sure `nb-use`, `nb-ask`, and other
+   parameterized commands still contain `{args}`.
+3. Restart the gateway and test `/nb-use <notebook-id>` plus `/nb-ask <question>`.
+
+If `/nb-list` works but argument commands fail, treat it as a Hermes-side
+compatibility issue first. See:
+
+- `/Users/sscomp/notebooklm-hermes-skill/docs/quick_commands_args_fix.md`
+- `/Users/sscomp/notebooklm-hermes-skill/docs/troubleshooting.md`

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+- Promoted the Hermes quick-command `{args}` compatibility check into the main install guidance instead of leaving it as a standalone note.
+- Added explicit agent-facing instructions that customer-machine installs must verify `/nb-use <id>` and `/nb-ask <question>`, not only `/nb-list`.
+- Updated installer output to remind operators to validate the Hermes `{args}` substitution path and consult the repair guide when needed.
+
 ## 0.3.2
 
 - Added post-install verification guidance so agents test `/nb-use <id>` and `/nb-ask <question>`, not just `/nb-list`.

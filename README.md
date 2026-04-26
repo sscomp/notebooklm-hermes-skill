@@ -4,7 +4,7 @@ Reusable NotebookLM research skill for Hermes Agent profiles.
 
 This project packages the full NotebookLM integration used in the local migration.
 
-Version: `0.3.2`
+Version: `0.3.3`
 
 ## Recommended usage
 
@@ -143,6 +143,32 @@ Why this matters:
 
 If `/nb-list` works but `/nb-use <id>` only prints a usage message, treat that as a
 Hermes compatibility problem first, not as a NotebookLM skill installation failure.
+
+### Agent-required `{args}` compatibility check
+
+When installing this repo into a customer Hermes environment, the agent must
+explicitly verify the Hermes quick-command `{args}` substitution path.
+
+Required checks:
+
+1. Confirm the Hermes gateway code already replaces `{args}` in `type: exec`
+   quick commands.
+2. Confirm the installed profile `config.yaml` contains `{args}` on all
+   NotebookLM commands that accept parameters.
+3. Confirm verification includes `/nb-use <notebook-id>` and `/nb-ask <question>`,
+   not only `/nb-list`.
+
+Suggested check command:
+
+```bash
+grep -A 3 "Replace {args}" ~/.hermes/hermes-agent/gateway/run.py
+```
+
+If that returns nothing, treat the target Hermes build as not yet patched for
+argument substitution and follow the repair notes in:
+
+- [docs/quick_commands_args_fix.md](/Users/sscomp/notebooklm-hermes-skill/docs/quick_commands_args_fix.md)
+- [docs/troubleshooting.md](/Users/sscomp/notebooklm-hermes-skill/docs/troubleshooting.md)
 
 ### Gateway restart and status
 
@@ -288,4 +314,27 @@ HERMES_HOME=/Users/sscomp/.hermes/profiles/m2 /Users/sscomp/.hermes/profiles/m2/
 
 詳細排錯請看：
 
+- [docs/troubleshooting.md](/Users/sscomp/notebooklm-hermes-skill/docs/troubleshooting.md)
+
+### 7) Agent 必查 `{args}` 參數替換
+
+安裝到客戶機台時，agent 不可以只確認 `/nb-list` 成功。
+
+必查項目：
+
+1. `~/.hermes/hermes-agent/gateway/run.py` 是否已有 `{args}` 替換邏輯
+2. `<PROFILE>/config.yaml` 內 `nb-use`、`nb-ask` 等命令是否保留 `{args}`
+3. 是否實測 `/nb-use <ID>` 與 `/nb-ask <問題>`
+
+建議檢查：
+
+```bash
+grep -A 3 "Replace {args}" ~/.hermes/hermes-agent/gateway/run.py
+grep "{args}" /Users/sscomp/.hermes/profiles/m2/config.yaml
+```
+
+若第一個檢查沒有結果，代表客戶機上的 Hermes Agent 很可能尚未修補；
+這時請依下列文件處理，不要誤判成 NotebookLM skill 安裝失敗：
+
+- [docs/quick_commands_args_fix.md](/Users/sscomp/notebooklm-hermes-skill/docs/quick_commands_args_fix.md)
 - [docs/troubleshooting.md](/Users/sscomp/notebooklm-hermes-skill/docs/troubleshooting.md)
