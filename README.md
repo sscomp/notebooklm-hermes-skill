@@ -133,6 +133,27 @@ For slash commands with arguments:
 - `/nb-ask <question>`
 - `/nb-create <topic>`
 
+### Common command examples
+
+Typical messaging-platform examples:
+
+```text
+/nb-create AI market map
+/nb-add https://openai.com/news/
+/nb-add Taiwan GPU supply chain notes from the latest earnings calls
+/nb-research enterprise AI agents competitors
+/nb-ask Summarize the top 5 risks and opportunities
+/nb-download
+```
+
+Notes:
+
+- `/nb-add <url or text>` accepts either a URL or a pasted text snippet.
+- `/nb-research <topic>` is useful when you want NotebookLM to pull in related
+  sources automatically before asking questions.
+- `/nb-download` exports the current notebook output after you have generated the
+  content you want.
+
 ### Post-install verification checklist
 
 Do not stop after `/nb-list`.
@@ -295,6 +316,25 @@ HERMES_HOME=/Users/sscomp/.hermes/profiles/m2 /Users/sscomp/.hermes/profiles/m2/
 - `/nb-use <ID>`
 - `/nb-ask <問題>`
 - `/nb-create <主題>`
+
+### 4.1) 常用指令範例
+
+常見的 Telegram 使用方式可以直接像這樣輸入：
+
+```text
+/nb-create AI 市場地圖
+/nb-add https://openai.com/news/
+/nb-add 台灣 GPU 供應鏈重點整理，來源是最新法說會內容
+/nb-research enterprise AI agents 競品分析
+/nb-ask 幫我整理前五大風險與機會
+/nb-download
+```
+
+補充說明：
+
+- `/nb-add <url 或文字>` 可以直接加網址，也可以直接貼上一段文字。
+- `/nb-research <主題>` 適合先自動找資料、補來源，再進一步提問。
+- `/nb-download` 適合在 brief、slides、quiz 等內容產生後匯出目前結果。
 
 ### 5) 安裝後怎麼驗證
 
