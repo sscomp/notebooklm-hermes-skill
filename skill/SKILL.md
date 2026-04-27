@@ -28,11 +28,21 @@ HERMES_HOME="$HERMES_HOME" "$HERMES_HOME/skills/research/notebooklm/scripts/nb.s
 
 Recommended gateway usage:
 
-- `/nb-list`
-- `/nb-use <notebook-id>`
-- `/nb-ask <question>`
-- `/nb-create <topic>`
-- `/nb-status`
+- `/nb-list`: List all notebooks
+- `/nb-status`: Show the current active notebook status
+- `/nb-use <notebook-id>`: Switch to the specified notebook
+- `/nb-create <topic>`: Create a new notebook
+- `/nb-add <url or text>`: Add a source to the active notebook
+- `/nb-ask <question>`: Ask the active notebook a question
+- `/nb-research <topic>`: Research a topic and add relevant sources
+- `/nb-brief`: Generate a briefing artifact
+- `/nb-slides`: Generate slide content
+- `/nb-podcast`: Generate a podcast script
+- `/nb-quiz`: Generate quiz content
+- `/nb-mindmap`: Generate a mind map
+- `/nb-download`: Download notebook output
+- `/nb-reset`: Clear the current notebook conversation context
+- `/nb-login`: Run NotebookLM login for this profile
 
 ## Auth
 Run profile-local login:

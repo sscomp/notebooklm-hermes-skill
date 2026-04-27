@@ -10,12 +10,23 @@ Version: `0.3.3`
 
 For Hermes gateway platforms such as Telegram, use the slash commands:
 
-- `/nb-list`
-- `/nb-use <notebook-id>`
-- `/nb-ask <question>`
-- `/nb-create <topic>`
-- `/nb-status`
-- `/nb-login`
+| Command | Purpose |
+| --- | --- |
+| `/nb-list` | List all notebooks |
+| `/nb-status` | Show the current active notebook status |
+| `/nb-use <notebook-id>` | Switch to the specified notebook |
+| `/nb-create <topic>` | Create a new notebook |
+| `/nb-add <url or text>` | Add a source to the active notebook |
+| `/nb-ask <question>` | Ask the active notebook a question |
+| `/nb-research <topic>` | Research a topic and add relevant sources |
+| `/nb-brief` | Generate a briefing artifact |
+| `/nb-slides` | Generate slide content |
+| `/nb-podcast` | Generate a podcast script |
+| `/nb-quiz` | Generate quiz content |
+| `/nb-mindmap` | Generate a mind map |
+| `/nb-download` | Download notebook output |
+| `/nb-reset` | Clear the current notebook conversation context |
+| `/nb-login` | Run NotebookLM login for this profile |
 
 This is the reliable user-facing interface for messaging platforms.
 
@@ -219,10 +230,23 @@ Detailed troubleshooting is in:
 
 在 Telegram 這類 Hermes gateway 平台上，請直接使用 slash 指令：
 
-- `/nb-list`
-- `/nb-use <ID>`
-- `/nb-ask <問題>`
-- `/nb-create <主題>`
+| 命令 | 用途 |
+| --- | --- |
+| `/nb-list` | 列出所有筆記本 |
+| `/nb-status` | 查看目前使用中的筆記本狀態 |
+| `/nb-use <notebook-id>` | 切換至指定筆記本 |
+| `/nb-create <主題>` | 建立新筆記本 |
+| `/nb-add <url 或文字>` | 新增來源內容到目前筆記本 |
+| `/nb-ask <問題>` | 向目前筆記本提問 |
+| `/nb-research <主題>` | 自動研究並加入相關來源 |
+| `/nb-brief` | 產生摘要 brief |
+| `/nb-slides` | 產生簡報內容 |
+| `/nb-podcast` | 產生 podcast 腳本 |
+| `/nb-quiz` | 產生測驗題目 |
+| `/nb-mindmap` | 產生心智圖 |
+| `/nb-download` | 下載筆記本內容 |
+| `/nb-reset` | 重置目前筆記本對話 |
+| `/nb-login` | 登入 NotebookLM |
 
 不要把 `nb list`、`nb ask` 這類純文字輸入當成 Telegram 的正式用法。
 
